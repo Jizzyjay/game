@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import GlobalApi from "../api/GlobalApi";
+import PropTypes from "prop-types";
 
 function GenreList() {
   const [genresList, setGenresList] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
 
   useEffect(() => {
-    getGenres();
+    getGenres({
+      // genreId,
+    });
   }, []);
 
   const getGenres = () => {
     GlobalApi.getGenres.then((res) => {
-    //   console.log(res.data.results);
       setGenresList(res.data.results);
     });
   };
@@ -21,7 +23,10 @@ function GenreList() {
       <h1 className="text-[20px] font-bold dark:text-white">Genre List</h1>
       {genresList.map((item, index) => (
         <div
-          onClick={() => setActiveGenre(index)}
+          onClick={() => {
+            setActiveGenre(index);
+            // genreId(item.id);
+          }}
           className={`flex gap-2 items-center mb-2 cursor-pointer hover:bg-gray-400
         p-2 group rounded-lg hover:dark:bg-gray-600 
         ${activeGenre == index ? "bg-gray-300 dark:bg-gray-600" : null}`}
@@ -45,5 +50,9 @@ function GenreList() {
     </div>
   );
 }
+
+GenreList.propTypes = {
+  genreId: PropTypes.func.isRequired,
+};
 
 export default GenreList;

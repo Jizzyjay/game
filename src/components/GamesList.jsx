@@ -4,7 +4,7 @@ function GamesList({ gameList }) {
   return (
     <div className="mt-5 hidden md:block">
       <h2 className="font-bold text-[30px] dark:text-white">Trending Games</h2>
-      <div className="md:grid md:grid-cols-3 gap-3 lg:grid-cols-4">
+      <div className="md:grid md:grid-cols-3 gap-3 lg:grid-cols-4 ">
         {gameList.map(
           (item, index) =>
             index < 4 && (
